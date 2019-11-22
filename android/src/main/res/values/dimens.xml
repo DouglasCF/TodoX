@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+
+    <dimen name="error_text_size">18sp</dimen>
+    <dimen name="error_button_text_size">18sp</dimen>
+    <dimen name="min_image_size">96dp</dimen>
+</resources>

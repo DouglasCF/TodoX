@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_loading_items">Error loading items</string>
+    <string name="retry">Retry</string>
+</resources>

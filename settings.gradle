@@ -1,0 +1,2 @@
+include ':app', ':common', ':android', ':navigation', ':core', ':domain', ':features:home'
+rootProject.name='TodoX'
