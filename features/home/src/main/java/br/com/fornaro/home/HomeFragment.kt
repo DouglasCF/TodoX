@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.fornaro.android.extensions.observe
 import br.com.fornaro.domain.model.TodoItem
@@ -35,6 +36,7 @@ class HomeFragment : Fragment() {
         setupViewModel()
         setupRecyclerView()
         setupErrorLayout()
+        setupFab()
     }
 
     private fun setupViewModel() = with(viewModel) {
@@ -57,6 +59,10 @@ class HomeFragment : Fragment() {
             text = getString(R.string.retry)
             setOnClickListener { viewModel.loadTodoItems() }
         }
+    }
+
+    private fun setupFab() = with(newItemButton) {
+        setOnClickListener { findNavController().navigate(R.id.itemDetailFragment) }
     }
 
     private fun updateData(data: List<TodoItem>) {
