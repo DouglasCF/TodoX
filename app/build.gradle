@@ -29,6 +29,7 @@ android {
 
 dependencies {
     implementation project(":features:home")
+    implementation project(":features:itemdetail")
 
     // Test
     testImplementation 'junit:junit:4.12'
