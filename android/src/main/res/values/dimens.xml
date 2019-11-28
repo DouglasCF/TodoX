@@ -6,4 +6,5 @@
     <dimen name="error_text_size">18sp</dimen>
     <dimen name="error_button_text_size">18sp</dimen>
     <dimen name="min_image_size">96dp</dimen>
+    <dimen name="min_clickable_area">56dp</dimen>
 </resources>
