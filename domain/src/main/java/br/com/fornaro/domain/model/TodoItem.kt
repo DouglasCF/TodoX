@@ -1,9 +1,13 @@
 package br.com.fornaro.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
+@Entity
 data class TodoItem(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long? = null,
     val title: String? = null,
     val description: String? = null,
     val dueDate: Date? = null,
