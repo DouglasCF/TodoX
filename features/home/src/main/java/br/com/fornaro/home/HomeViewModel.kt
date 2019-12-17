@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.domain.model.TodoItem
 import br.com.fornaro.domain.usecase.HomeUseCases
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -29,15 +29,18 @@ class HomeViewModel(
         loadTodoItems()
     }
 
-     fun loadTodoItems() = viewModelScope.launch {
+    fun loadTodoItems() = viewModelScope.launch {
         _progress.value = true
         _error.value = false
-        delay(1000)
         try {
-            _result.value = homeUseCases.getTodoItems()
+            homeUseCases.getTodoItems().collect {
+                _progress.value = false
+                _result.value = it
+            }
         } catch (e: Exception) {
             _error.value = true
+        } finally {
+            _progress.value = false
         }
-        _progress.value = false
     }
 }

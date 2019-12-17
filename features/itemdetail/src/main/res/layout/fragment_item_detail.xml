@@ -27,46 +27,33 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="@dimen/default_margin" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/titleLayout"
+    <EditText
+        android:id="@+id/titleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/title"
+        android:inputType="textCapSentences|textMultiLine"
         android:textColorHint="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/verticalEndGuideline"
         app:layout_constraintStart_toStartOf="@id/verticalBeginGuideline"
-        app:layout_constraintTop_toTopOf="@id/horizontalGuideline">
+        app:layout_constraintTop_toTopOf="@id/horizontalGuideline" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/titleText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="top"
-            android:hint="@string/title"
-            android:inputType="textCapSentences|textMultiLine"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descriptionLayout"
+    <EditText
+        android:id="@+id/descriptionText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/default_margin"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="@string/description"
+        android:inputType="textCapSentences|textMultiLine"
         android:textColorHint="@android:color/black"
         app:layout_constraintBottom_toTopOf="@id/separatorView"
         app:layout_constraintEnd_toEndOf="@id/verticalEndGuideline"
         app:layout_constraintStart_toStartOf="@id/verticalBeginGuideline"
-        app:layout_constraintTop_toBottomOf="@id/titleLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/descriptionText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="top"
-            android:hint="@string/description"
-            android:inputType="textCapSentences|textMultiLine" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@id/titleText" />
 
     <ImageButton
         android:id="@+id/reminderButton"
@@ -93,6 +80,7 @@
         app:srcCompat="@drawable/ic_event_black" />
 
     <TextView
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"

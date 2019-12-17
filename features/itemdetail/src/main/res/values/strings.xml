@@ -3,4 +3,6 @@
     <string name="description">Description</string>
     <string name="due_date_content_description">Select a due date</string>
     <string name="save">Save</string>
+
+    <string name="error_save_item_detail_title_description_empty">Fill the title or the description.</string>
 </resources>
