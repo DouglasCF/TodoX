@@ -9,9 +9,12 @@ import br.com.fornaro.domain.database.AppDatabase
 import br.com.fornaro.domain.database.dao.TodoItemDao
 import br.com.fornaro.domain.model.TodoItem
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.*
 import org.junit.runner.RunWith
+import java.util.concurrent.CountDownLatch
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
@@ -53,6 +56,24 @@ class TodoItemDaoTest {
         dao.delete(todoItemFromDatabase)
         todoItemFromDatabase = dao.select(idInserted)
         Assert.assertNull(todoItemFromDatabase)
+    }
+
+    @Test
+    fun testSelectAll() = runBlockingTest {
+        val todoItem = createListTodoItem()
+        val idsInserted = dao.insert(todoItem)
+        val latch = CountDownLatch(1)
+        val todoItems = mutableListOf<TodoItem>()
+        val job = launch {
+            dao.selectAll().collect {
+                todoItems.addAll(it)
+                latch.countDown()
+            }
+        }
+
+        latch.await()
+        job.cancel()
+        Assert.assertEquals(idsInserted, todoItems.map { it.id })
     }
 
     private fun createTodoItem() = createListTodoItem()[0]
