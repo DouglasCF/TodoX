@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import br.com.fornaro.android.extensions.observe
 import br.com.fornaro.android.extensions.toast
 import kotlinx.android.synthetic.main.fragment_item_detail.*
@@ -38,7 +39,12 @@ class ItemDetailFragment : Fragment() {
     }
 
     private fun setupViewModel() = with(viewModel) {
+        success.observe(viewLifecycleOwner) { handleSuccess() }
         error.observe(viewLifecycleOwner) { handleError(it) }
+    }
+
+    private fun handleSuccess() {
+        findNavController().navigateUp()
     }
 
     private fun handleError(error: ItemDetailError) = when (error) {

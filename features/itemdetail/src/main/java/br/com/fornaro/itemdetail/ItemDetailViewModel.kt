@@ -12,6 +12,10 @@ class ItemDetailViewModel(
     private val itemDetailUseCases: ItemDetailUseCases
 ) : ViewModel() {
 
+    private val _success = MutableLiveData<Boolean>()
+    val success: LiveData<Boolean>
+        get() = _success
+
     private val _error = MutableLiveData<ItemDetailError>()
     val error: LiveData<ItemDetailError>
         get() = _error
@@ -24,6 +28,7 @@ class ItemDetailViewModel(
             description = description
         )
         itemDetailUseCases.insert(todoItem)
+        _success.value = true
     }
 }
 
